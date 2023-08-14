@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --hue: 194;
+  --bg-color: hsl(var(--hue), 0%, 100%);
+  --text-color: hsl(var(--hue), 6%, 21%);
+  --bg-blur-sounds: hsl(var(--hue), 9%, 89%);
+  --bg-focus-sounds: hsl(var(--hue), 97%, 31%);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+}
+
+html.running .ph-play-circle,
+html:not(.running) .ph-pause-circle {
+  display: none;
+}
+
+html.dark {
+  --bg-color: hsl(var(--hue), 6%, 21%);
+  --text-color: hsl(var(--hue), 0%, 100%);
+}
+html.dark .ph-moon,
+html:not(.dark) .ph-sun {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.ph-bold {
+  font-size: 4.8rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background-color: transparent;
+  opacity: 0;
+  border: 0;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+}
+
+#darkOrlight {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.4rem;
+  color: var(--text-color);
+}
+
+#app {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-template-areas:
+    "timer"
+    "sounds";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+  padding-inline: 4rem;
+  padding-bottom: 4rem;
+}
+
+#timer {
+  grid-area: timer;
+  display: grid;
+  justify-items: center;
+  gap: 1.6rem;
+  width: 100%;
+}
+
+#minutesAndSeconds {
+  position: relative;
+  font-size: clamp(10rem, 10vw + 1rem, 12.8rem);
+}
+
+#error {
+  position: absolute;
+  align-items: center;
+  top: -1.6rem;
+  left: 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.1rem;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  color: #fff;
+  background-color: red;
+}
+#error .ph-prohibit {
+  font-size: 2.4rem;
+}
+
+.hide {
+  display: none;
+}
+
+#controls {
+  gap: clamp(2.4rem, 3vw + 1rem, 4rem);
+}
+
+#controls button {
+  color: var(--text-color);
+}
+
+#sounds {
+  grid-area: sounds;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3.2rem;
+  width: 100%;
+  max-width: 30.4rem;
+}
+
+#sounds button {
+  background-color: var(--bg-blur-sounds);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 13.6rem;
+  height: 15.2rem;
+  border-radius: 2rem;
+}
+
+#sounds button:focus {
+  background-color: var(--bg-focus-sounds);
+}
+
+@media (min-width: 1000px) {
+  #app {
+    grid-template-areas: "timer sounds";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100vh;
+    gap: 4rem;
+    max-width: 100rem;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Temporizador estilo Pomodoro para mais eficiência em suas atividades"
+    />
+    <meta
+      name="keywords"
+      content="técnica pomodoro, pomodoro, eficiência, estudo eficiente, trabalho eficiente, técnica eficiente, timer, cronômetro"
+    />
+    <link rel="shortcut icon" href="./assets/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script type="module" src="./main.js" defer></script>
+    <title>FocusTimer - Pomodoro</title>
+  </head>
+  <body>
+    <button id="darkOrlight">
+      <span class="sr-only modeDescription">Ativar Dark Mode</span>
+      <i class="ph-bold ph-sun"></i>
+      <i class="ph-bold ph-moon"></i>
+    </button>
+    <main id="app">
+      <section id="timer">
+        <div id="minutesAndSeconds" class="flex">
+          <div id="error" class="hide flex">
+            <i class="ph-bold ph-prohibit"></i>
+            <span class="errorDescription"></span>
+          </div>
+          <span id="minutes">25</span>
+          <span>:</span>
+          <span id="seconds">00</span>
+        </div>
+        <div id="controls" class="flex">
+          <button data-action="toggleRunning" class="ph-bold ph-play-circle">
+            <span class="sr-only">Dar play no timer</span>
+          </button>
+          <button data-action="toggleRunning" class="ph-bold ph-pause-circle">
+            <span class="sr-only">Dar pause no timer</span>
+          </button>
+          <button data-action="resetTimer" class="ph-bold ph-stop-circle">
+            <span class="sr-only">Resetar timer</span>
+          </button>
+          <button data-action="addFiveMinutes" class="ph-bold ph-plus-circle">
+            <span class="sr-only">Aumentar 5 minutos</span>
+          </button>
+          <button
+            data-action="removeFiveMinutes"
+            class="ph-bold ph-minus-circle"
+          >
+            <span class="sr-only">Diminuir 5 minutos</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="sounds" class="fontSizeLogos">
+        <button class="flex">
+          <span class="sr-only"></span>
+          <i class="ph-bold ph-tree"></i>
+        </button>
+        <button class="flex">
+          <span class="sr-only"></span>
+          <i class="ph-bold ph-cloud-rain"></i>
+        </button>
+        <button class="flex">
+          <span class="sr-only"></span>
+          <i class="ph-bold ph-storefront"></i>
+        </button>
+        <button class="flex">
+          <span class="sr-only"></span>
+          <i class="ph-bold ph-campfire"></i>
+        </button>
+      </section>
+    </main>
+  </body>
+</html>
