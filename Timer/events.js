@@ -1,7 +1,6 @@
-import { controls } from "./elements.js";
+import { controls, error } from "./elements.js";
 import * as actions from "./actions.js";
 import { dendenmushi } from "./sounds.js";
-import state from "./state.js";
 
 export function registerEvents() {
   controls.addEventListener("click", (e) => {
@@ -13,14 +12,12 @@ export function registerEvents() {
     actions[action]();
   });
 
-  document.addEventListener("click", () => {
+  document.addEventListener("click", (e) => {
     dendenmushi.pause();
-  });
-}
-
-export function resetCounter() {
-  controls.querySelector(".ph-stop-circle").addEventListener("click", () => {
-    state.counter = 0;
-    console.log("Reset Counter " + state.counter);
+    const action = e.target.dataset.action;
+    if (typeof actions[action] != "function") {
+      error.classList.add("hide");
+      return;
+    }
   });
 }

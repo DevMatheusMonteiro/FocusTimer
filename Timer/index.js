@@ -1,4 +1,4 @@
-import { registerEvents, resetCounter } from "./events.js";
+import { registerEvents } from "./events.js";
 import { updateDisplay } from "./timer.js";
 import state from "./state.js";
 
@@ -9,5 +9,4 @@ export function start(minutes, seconds) {
   updateDisplay();
 
   registerEvents();
-  resetCounter();
 }

@@ -29,7 +29,7 @@ export function countdown() {
 
   updateDisplay(minutes, seconds);
 
-  setTimeout(() => countdown(), 0.01);
+  setTimeout(() => countdown(), 1000);
 }
 
 export function updateDisplay(minutes, seconds) {
@@ -40,28 +40,28 @@ export function updateDisplay(minutes, seconds) {
   elements.seconds.textContent = String(seconds).padStart(2, "0");
 }
 
-let minutes = state.minutes;
 export function pomodoro() {
-  console.log(elements.minutes.textContent);
-  if (minutes >= state.minutes && state.counter < 4) {
-    minutes = 5;
-    elements.controls.querySelector(".ph-plus-circle").disabled = true;
-    elements.controls.querySelector(".ph-minus-circle").disabled = true;
-    console.log("Aqui dentro do < 4");
-    state.counter++;
-  } else if (minutes >= state.minutes && state.counter == 4) {
-    minutes = 15;
-    state.counter = 0;
-    elements.controls.querySelector(".ph-plus-circle").disabled = true;
-    elements.controls.querySelector(".ph-minus-circle").disabled = true;
-    console.log("Aqui dentro do >= 4");
+  let minutes;
+
+  if (state.focus) {
+    if (state.counter < 3) {
+      minutes = state.shortRestMinutes;
+      elements.controls.querySelector(".ph-plus-circle").disabled = true;
+      elements.controls.querySelector(".ph-minus-circle").disabled = true;
+      state.counter++;
+    } else {
+      minutes = state.longRestMinutes;
+      state.counter = 0;
+      elements.controls.querySelector(".ph-plus-circle").disabled = true;
+      elements.controls.querySelector(".ph-minus-circle").disabled = true;
+    }
+    state.focus = false;
   } else {
     minutes = state.minutes;
     elements.controls.querySelector(".ph-plus-circle").disabled = false;
     elements.controls.querySelector(".ph-minus-circle").disabled = false;
+    state.focus = true;
   }
-
-  state.isRunning = elements.root.classList.remove("running");
   updateDisplay(minutes, null);
-  console.log("Fim " + state.counter);
+  state.isRunning = elements.root.classList.remove("running");
 }

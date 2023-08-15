@@ -14,6 +14,8 @@ export function toggleRunning() {
 export function resetTimer() {
   state.isRunning = elements.root.classList.remove("running");
 
+  state.counter = 0;
+  state.focus = true;
   elements.controls.querySelector(".ph-plus-circle").disabled = false;
   elements.controls.querySelector(".ph-minus-circle").disabled = false;
   elements.error.classList.add("hide");
@@ -21,35 +23,37 @@ export function resetTimer() {
 }
 
 export function addFiveMinutes() {
-  let minutes = Number(elements.minutes.textContent);
-  minutes += 5;
-  if (minutes > 60) {
+  if (state.minutes == 60) {
+    state.error = true;
     elements.error.classList.remove("hide");
     elements.error.querySelector(".errorDescription").textContent =
       "Não pode ser acima de 60 minutos";
     return;
   }
 
+  state.minutes += 5;
+  state.shortRestMinutes += 5;
+  state.longRestMinutes += 5;
+  state.error = false;
   elements.error.classList.add("hide");
   sounds.buttonPress.play();
-  state.minutes = minutes;
-  state.seconds = 0;
   timer.updateDisplay();
 }
 
 export function removeFiveMinutes() {
-  let minutes = Number(elements.minutes.textContent);
-  minutes -= 5;
-  if (minutes < 25) {
+  if (state.minutes == 25) {
+    state.error = true;
     elements.error.classList.remove("hide");
     elements.error.querySelector(".errorDescription").textContent =
       "Não pode ser abaixo de 25 minutos";
     return;
   }
 
+  state.minutes -= 5;
+  state.shortRestMinutes -= 5;
+  state.longRestMinutes -= 5;
+  state.error = false;
   elements.error.classList.add("hide");
   sounds.buttonPress.play();
-  state.minutes = minutes;
-  state.seconds = 0;
   timer.updateDisplay();
 }

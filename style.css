@@ -142,7 +142,7 @@ button {
   border-radius: 2rem;
 }
 
-#sounds button:focus {
+#sounds .bg-blue {
   background-color: var(--bg-focus-sounds);
 }
 
