@@ -7,4 +7,5 @@ export default {
   isRunning: false,
   error: false,
   focus: true,
+  countdownId: null,
 };
